@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/*
+font-family: 'Share Tech Mono', monospace;
+*/
+
+/* SIMPLE CSS RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    font-family: 'Share Tech Mono', monospace;
+    background-color: rgb(28, 28, 28);
+    padding: 2em;
+    color: rgb(13, 255, 13);
+    animation: transitionIn .5s;
+}
+
+main{
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto; 
+    gap: 2em; 
+    grid-template-areas: 
+      "heading-grid"
+      "loading-grid"
+      "text-grid"; 
+      max-width: 75%; /* I want the main content to take up 75% of the screen to make contents look good*/
+}
+
+/*H1 styles and typing animation! */
+h1{
+    font-size: 2rem;
+    margin: 0 auto;
+    white-space: nowrap;
+    /*Keeping content in a single line*/
+    overflow: hidden;
+    /*So that the content is not seen before animation begins*/
+    text-align: center;
+    animation: typing 1s steps(50);
+    grid-area: heading-grid;
+}
+
+/* To easily contain and group the animation; also to be able to put it in a grid-area easily! */
+.loading-animation-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    grid-area: loading-grid;
+}
+
+.circle{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    border-left: rgb(241, 241, 170) 7px solid;
+    box-shadow: 0 0 5px rgb(190, 190, 133);
+    animation: rotateRing 3s linear infinite;
+}
+
+.circle::before{
+    content:'';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: rgb(241, 241, 170);
+    border-radius: 50%;
+    left: 75px;
+    bottom: -5px;
+    box-shadow: 0 0 5px rgb(231, 231, 162),
+    0 0 10px rgb(216, 216, 152),
+    0 0 15px rgb(210, 210, 148),
+    0 0 20px rgb(216, 216, 150);
+}
+
+/* Above is the dot at the tail of the border with box shadowing to simulate a glowing effect.*/
+
+.text-container{
+    grid-area: text-grid;
+}
+
+/*ANIMATION KEYFRAMES SECTION*/
+
+/* ANIMATION FOR TRANSITIONING IN ALL CONTENT 
+    To create a smooth transition for the user to see when first loading up in the page.
+*/
+
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+
+}
+
+/* KEYFRAMES FOR THE TYPING ANIMATION PRESENT IN THE H1
+    To create a hacker hacking the "mainframe" from a movie with hackers type vibe.
+*/
+@keyframes typing{
+    from{
+        width: 0%;
+    }
+    to{
+        width: 100%;
+    }
+}
+
+/*KEYFRAMES FOR THE ROTATION OF THE BORDER
+    To create like a line is rotating in a circle.
+
+*/
+    
+@keyframes rotateRing{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-360deg);
+    }
+}
+
+
+
+/* Styles for my footer to stay below the page and be centered */
+footer{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    color: white;
+    bottom: 0;
+    width: 100%;
+}
